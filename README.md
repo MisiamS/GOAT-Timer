@@ -1,6 +1,6 @@
 # GOAT Timer 🐐
 
-**DISCLAIMER:**It's a work in progress still!!
+**DISCLAIMER:** It's a work in progress still!!
 
 A shared timer inspired by the original Cuckoo Timer, featuring link-based rooms and a cute pastel design.
 
