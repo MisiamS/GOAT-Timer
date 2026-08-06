@@ -1,4 +1,4 @@
-# Capretta Timer 🐐
+# GOAT Timer 🐐
 
 A shared timer inspired by the original Cuckoo Timer, featuring link-based rooms and a cute pastel design.
 
