@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#ccebd9" />
+  <title>Capretta Timer</title>
+  <meta name="description" content="Timer condiviso cute per studiare e lavorare insieme." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="sky-blob sky-blob-one"></div>
+  <div class="sky-blob sky-blob-two"></div>
+  <div class="floating-star star-one">✦</div>
+  <div class="floating-star star-two">✦</div>
+
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Capretta Timer home">
+        <span class="brand-mark" aria-hidden="true">🐐</span>
+        <span>
+          <strong>Capretta Timer</strong>
+          <small>focus together, gently</small>
+        </span>
+      </a>
+
+      <button id="copyLinkButton" class="soft-button link-button" type="button">
+        <span aria-hidden="true">🔗</span>
+        Copia link stanza
+      </button>
+    </header>
+
+    <section class="hero-grid">
+      <section class="timer-card card" aria-labelledby="timerTitle">
+        <div class="mode-switch" role="group" aria-label="Tipo di sessione">
+          <button id="workModeButton" class="mode-button active" type="button">🌼 Lavoro</button>
+          <button id="breakModeButton" class="mode-button" type="button">☁️ Pausa</button>
+        </div>
+
+        <div class="mascot-wrap" aria-hidden="true">
+          <svg class="goat-mascot" viewBox="0 0 280 190" role="img" aria-label="Capretta su una nuvola">
+            <ellipse cx="145" cy="166" rx="97" ry="18" fill="#bde5cd" opacity=".65"/>
+            <g class="cloud">
+              <circle cx="92" cy="143" r="29" fill="#fffdf9"/>
+              <circle cx="126" cy="133" r="37" fill="#fffdf9"/>
+              <circle cx="166" cy="142" r="31" fill="#fffdf9"/>
+              <rect x="78" y="141" width="110" height="31" rx="15" fill="#fffdf9"/>
+            </g>
+            <g class="goat-body">
+              <ellipse cx="139" cy="104" rx="56" ry="39" fill="#fff7ec" stroke="#5f665f" stroke-width="4"/>
+              <circle cx="186" cy="83" r="34" fill="#fff7ec" stroke="#5f665f" stroke-width="4"/>
+              <path d="M164 55c-8-22 10-31 18-13" fill="none" stroke="#d6b48d" stroke-width="8" stroke-linecap="round"/>
+              <path d="M190 49c7-22 24-15 21 1" fill="none" stroke="#d6b48d" stroke-width="8" stroke-linecap="round"/>
+              <path d="M171 62l-18-13c-7-5-15 3-9 10l15 17" fill="#efd5d8" stroke="#5f665f" stroke-width="4" stroke-linejoin="round"/>
+              <path d="M204 61l18-11c8-4 14 5 7 11l-17 15" fill="#efd5d8" stroke="#5f665f" stroke-width="4" stroke-linejoin="round"/>
+              <circle cx="176" cy="80" r="4.5" fill="#5f665f"/>
+              <circle cx="197" cy="80" r="4.5" fill="#5f665f"/>
+              <path d="M181 94c6 4 11 4 16 0" fill="none" stroke="#5f665f" stroke-width="4" stroke-linecap="round"/>
+              <circle cx="166" cy="91" r="7" fill="#f4cfd5" opacity=".8"/>
+              <circle cx="207" cy="91" r="7" fill="#f4cfd5" opacity=".8"/>
+              <path d="M102 131v22M127 137v20M153 137v20" stroke="#5f665f" stroke-width="6" stroke-linecap="round"/>
+              <path d="M87 92c-14-16-22-4-13 8" fill="none" stroke="#5f665f" stroke-width="5" stroke-linecap="round"/>
+            </g>
+            <g class="sparkles" fill="#f7c768">
+              <path d="M49 56l4 9 9 4-9 4-4 9-4-9-9-4 9-4z"/>
+              <path d="M238 93l3 7 7 3-7 3-3 7-3-7-7-3 7-3z"/>
+            </g>
+          </svg>
+        </div>
+
+        <div class="session-label" id="timerTitle">Sessione di lavoro</div>
+        <div id="timerDisplay" class="timer-display" aria-live="polite">25:00</div>
+
+        <div class="timer-actions">
+          <button id="toggleButton" class="primary-button" type="button">
+            <span id="toggleIcon" aria-hidden="true">▶</span>
+            <span id="toggleText">Avvia</span>
+          </button>
+          <button id="resetButton" class="soft-button" type="button">↻ Reset</button>
+        </div>
+
+        <p class="sync-note"><span class="live-dot"></span> Timer sincronizzato con tutta la stanza</p>
+      </section>
+
+      <aside class="side-column">
+        <section class="card settings-card">
+          <div class="card-heading">
+            <div>
+              <span class="eyebrow">Personalizza</span>
+              <h2>I tuoi tempi</h2>
+            </div>
+            <span class="heading-icon" aria-hidden="true">⏱️</span>
+          </div>
+
+          <form id="durationForm" class="duration-form">
+            <label>
+              <span>Lavoro</span>
+              <span class="input-wrap">
+                <input id="workMinutesInput" type="number" min="1" max="180" value="25" inputmode="numeric" />
+                <small>min</small>
+              </span>
+            </label>
+            <label>
+              <span>Pausa</span>
+              <span class="input-wrap">
+                <input id="breakMinutesInput" type="number" min="1" max="180" value="5" inputmode="numeric" />
+                <small>min</small>
+              </span>
+            </label>
+            <button class="save-button" type="submit">Salva tempi</button>
+          </form>
+        </section>
+
+        <section class="card room-card">
+          <div class="card-heading participants-heading">
+            <div>
+              <span class="eyebrow">Stanza</span>
+              <h2>Caprette presenti</h2>
+            </div>
+            <span id="participantCount" class="participant-count">0</span>
+          </div>
+
+          <div id="participantsList" class="participants-list" aria-live="polite"></div>
+          <div class="room-code-row">
+            <span>Codice stanza</span>
+            <strong id="roomCode">—</strong>
+          </div>
+        </section>
+      </aside>
+    </section>
+  </main>
+
+  <div id="joinModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="joinTitle">
+    <div class="join-card">
+      <div class="mini-goat" aria-hidden="true">🐐</div>
+      <span class="eyebrow">Benvenuta nel prato</span>
+      <h1 id="joinTitle">Come vuoi chiamarti?</h1>
+      <p>Il tuo nome verrà mostrato alle altre persone nella stanza.</p>
+      <form id="joinForm">
+        <input id="nameInput" maxlength="24" placeholder="Es. Miriam" autocomplete="nickname" required />
+        <label class="notification-option">
+          <input id="notificationCheckbox" type="checkbox" checked />
+          <span>Avvisami quando entra qualcuno</span>
+        </label>
+        <button class="primary-button join-button" type="submit">Entra nella stanza 🌿</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="toastRegion" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
